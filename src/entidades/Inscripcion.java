@@ -68,5 +68,5 @@ public class Inscripcion {
     
     public void setNota(double nota){
         this.nota=nota;
-    }
+    }  
 }
