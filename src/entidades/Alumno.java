@@ -83,4 +83,12 @@ public class Alumno {
         return "Alumno{" + "idAlumno=" + idAlumno + "Dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", fechaNac=" + fechaNac + ", activo=" + activo + '}';
     }
 
+    public void setFechaNacimiento(LocalDate fechaNac) {
+        this.fechaNac =fechaNac;
+    }
+
+    public void setEstado(boolean estado) {
+        this.activo=estado;
+    }
+
 }
