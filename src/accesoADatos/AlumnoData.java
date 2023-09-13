@@ -21,9 +21,8 @@ public class AlumnoData {
     }
 
     public void guardarAlumno(Alumno alumno) {
-        String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento,estado) "
-                + "VALUES (?,?,?,?,?)";
         try {
+            String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento,estado) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
@@ -32,16 +31,13 @@ public class AlumnoData {
             ps.setBoolean(5, alumno.isActivo());
             int mostrar = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-
             if (rs.next()) {
-                alumno.setIdAlumno(rs.getInt("idAlumno"));
-
+                alumno.setIdAlumno(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno añadido");
             }
             ps.close();
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla alumno");
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla alumno - "+ex.getMessage());
         }
     }
 
@@ -100,7 +96,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setEstado(true);
+                alumno.setEstado(rs.getBoolean("estado"));
             }else{
                 JOptionPane.showMessageDialog(null, "El ID no corresponde a ningún alumno activo.");
             }

@@ -26,11 +26,11 @@ public class MateriaData {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setIdMateria(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Materia añadida correctamente.");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
         }
     }
     
@@ -51,7 +51,7 @@ public class MateriaData {
                 JOptionPane.showMessageDialog(null, "El ID no corresponde a ninguna materia activa.");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
         }
         return materia;
     }
@@ -71,7 +71,7 @@ public class MateriaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
         }
         
     }
@@ -88,7 +88,7 @@ public class MateriaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
         }
     }
     
@@ -109,7 +109,7 @@ public class MateriaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
         }
         return materias;
     }
