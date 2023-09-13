@@ -8,8 +8,6 @@ import entidades.Inscripcion;
 import entidades.Materia;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class NewMain {
 
@@ -23,11 +21,13 @@ public class NewMain {
         Alumno maca = new Alumno(456,"Noya","Macarena",LocalDate.parse("1989-05-12"),true);
         Alumno flor = new Alumno(789,"Vaca Cardoso","Florencia",LocalDate.parse("1996-02-11"),true);
         Alumno gon = new Alumno (741,"Sosa","Gonzalo",LocalDate.parse("1998-11-25"),true);
+        Alumno lau = new Alumno (568,"Mercedes","Laura",LocalDate.parse("2000-07-15"),true);
         Materia matem=new Materia("Matematica",1,true);
         Materia bio=new Materia("Biologia",2,true);
         Materia ing=new Materia("Ingles",3,true);
+        Materia fil=new Materia("Filosofia",1,true);
         
-        System.out.println(alu.buscarAlumno(2));
+//        System.out.println(alu.buscarAlumno(2));
 //        alu.guardarAlumno(pau);
 //        alu.guardarAlumno(maca);
 //        alu.guardarAlumno(flor);
@@ -35,15 +35,18 @@ public class NewMain {
 //        mat.guardarMateria(matem);
 //        mat.guardarMateria(bio);
 //        mat.guardarMateria(ing);
-//        System.out.println(alu.buscarAlumno(23)+"\n");
+//alu.guardarAlumno(lau);
+//mat.guardarMateria(fil);
+//        System.out.println(alu.buscarAlumno(1)+"\n");
+//        alu.eliminarAlumno(5);
 //        System.out.println(mat.buscarMateria(10)+"\n");
 //        System.out.println(mat.buscarMateria(12));
         //Inscripcion i1= new Inscripcion(alu.buscarAlumno(3),mat.buscarMateria(3),8);
         //Inscripcion i5= new Inscripcion(alu.buscarAlumno(2),mat.buscarMateria(2),8);
-//        Inscripcion i2= new Inscripcion(maca,bio,7.5);
+//        Inscripcion i2= new Inscripcion(lau, bio, 10);
 //        Inscripcion i3= new Inscripcion(gon,matem,8);
 //        Inscripcion i4= new Inscripcion(flor,ing,8);
-        //ins.guardarInscripcion(i1);
+//        ins.guardarInscripcion(i1);
 //        ins.guardarInscripcion(i2);
 //        ins.guardarInscripcion(i3);
 //        ins.guardarInscripcion(i4);
