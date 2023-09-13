@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Paaw/Documents/GitHub/UniversidadGrupo1/UniversidadEquipo1/src/accesoADatos/AlumnoData.java</file>
-            <file>file:/C:/Users/Paaw/Documents/GitHub/UniversidadGrupo1/UniversidadEquipo1/src/Main.java</file>
-            <file>file:/C:/Users/Paaw/Documents/GitHub/UniversidadGrupo1/UniversidadEquipo1/src/accesoADatos/InscripcionData.java</file>
-            <file>file:/C:/Users/Paaw/Documents/GitHub/UniversidadGrupo1/UniversidadEquipo1/src/entidades/Alumno.java</file>
-            <file>file:/C:/Users/Paaw/Documents/GitHub/UniversidadGrupo1/UniversidadEquipo1/src/accesoADatos/Conexion.java</file>
-            <file>file:/C:/Users/Paaw/Documents/GitHub/UniversidadGrupo1/UniversidadEquipo1/src/entidades/Materia.java</file>
-            <file>file:/C:/Users/Paaw/Documents/GitHub/UniversidadGrupo1/UniversidadEquipo1/src/entidades/Inscripcion.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/accesoADatos/AlumnoData.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/entidades/Materia.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/accesoADatos/InscripcionData.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/NewMain.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/accesoADatos/Conexion.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/entidades/Alumno.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/entidades/Inscripcion.java</file>
+            <file>file:/C:/Users/gon_k/Documents/NetBeansProjects/UniversidadEquipo1/src/accesoADatos/MateriaData.java</file>
         </group>
     </open-files>
 </project-private>

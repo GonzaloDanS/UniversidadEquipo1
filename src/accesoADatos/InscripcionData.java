@@ -21,25 +21,23 @@ public class InscripcionData {
     }
 
     public void guardarInscripcion(Inscripcion insc) {
-        String sql = "INSERT INTO inscripcion (nota, idAlumno, idMateria) VALUES (?, ?, ?)";
-
+        String sql = "INSERT INTO inscripcion VALUES (null, ?, ?, ?)";
         PreparedStatement ps;
-
         try {
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getIdAlumno());
             ps.setInt(3, insc.getIdMateria());
-            ps.executeUpdate();
+            int exito = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                insc.setIdInscripcion(rs.getInt("inscripcion.idInscripcion"));
+                insc.setIdInscripcion(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno inscripto correctamente.");
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla inscripción");
+            JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla inscripción - "+ex.getMessage());
         }
 
     }
@@ -149,7 +147,7 @@ public class InscripcionData {
     }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
-
+        
     }
 
     /*public List<Alumno> obtenerAlumnosPorMateria(int idMateria) {
