@@ -49,6 +49,7 @@ public class AlumnoData {
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
             ps.setBoolean(5, alumno.isActivo());
+            ps.setInt(6, alumno.getIdAlumno());
             int mostrar = ps.executeUpdate();
             System.out.println(mostrar);
             if (mostrar == 1) {
@@ -58,7 +59,7 @@ public class AlumnoData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla alumno");
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla alumno " +ex.getMessage());
         }
 
     }
