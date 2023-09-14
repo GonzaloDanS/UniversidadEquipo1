@@ -35,9 +35,12 @@ public class InscripcionData {
                 JOptionPane.showMessageDialog(null, "Alumno inscripto correctamente.");
             }
             ps.close();
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla inscripción - "+ex.getMessage());
+            if (ex.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "Alumno ya inscrito en esa materia. - " + ex.getMessage());
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla inscripción - " + ex.getMessage());
+            }
         }
 
     }
@@ -88,7 +91,7 @@ public class InscripcionData {
     }
 
     public List<Materia> obtenerMateriasCursadas(int id) {
-        List<Materia> materias = new ArrayList<Materia>();
+        List<Materia> materias = new ArrayList<>();
         try {
             String sql = "SELECT inscripcion.idMateria, nombre, anio FROM inscripcion, "
                     + " materia WHERE inscripcion.idMateria = materia.idMateria AND inscripcion.idAlumno = ? ";
@@ -111,10 +114,9 @@ public class InscripcionData {
     }
 
     public List<Materia> obtenerMateriasNOCursadas(int id) {
-        List<Materia> materias = new ArrayList<Materia>();
+        List<Materia> materias = new ArrayList<>();
         try {
-            String sql = "SELECT inscripcion.idMateria, nombre, anio FROM inscripcion, "
-                    + " materia WHERE inscripcion.idMateria = materia.idMateria AND NOT inscripcion.idAlumno = ? ";
+            String sql = "SELECT DISTINCT m.idMateria, m.nombre FROM materia m LEFT JOIN inscripcion i ON m.idMateria = i.idMateria WHERE i.idAlumno IS NULL OR i.idAlumno != ?";
             PreparedStatement ps;
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -140,17 +142,33 @@ public class InscripcionData {
             ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
+            int mostrar = ps.executeUpdate();
+            if (mostrar == 1) {
+                JOptionPane.showMessageDialog(null, "Inscripción borrada exitosamente.");
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla inscripcion. " + ex.getMessage());
         }
 
     }
 
-    public void actualizarNota(int idAlumno, int idMateria, double nota) {
-        
+    public void actualizarNota(int idAlumno, int idMateria, int nota) {
+        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno= ? AND idMateria = ?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, nota);
+            ps.setInt(2, idAlumno);
+            ps.setInt(3, idMateria);
+            int mostrar = ps.executeUpdate();
+            if (mostrar == 1) {
+                JOptionPane.showMessageDialog(null, "Nota actualizada.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla inscripcion. " + ex.getMessage());
+        }
     }
 
     /*public List<Alumno> obtenerAlumnosPorMateria(int idMateria) {
-
     }*/
 }

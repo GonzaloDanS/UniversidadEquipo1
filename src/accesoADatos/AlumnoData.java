@@ -51,10 +51,11 @@ public class AlumnoData {
             ps.setBoolean(5, alumno.isActivo());
             ps.setInt(6, alumno.getIdAlumno());
             int mostrar = ps.executeUpdate();
-            System.out.println(mostrar);
             if (mostrar == 1) {
-
+                System.out.println(mostrar);
                 JOptionPane.showMessageDialog(null, "Alumno modificado");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error, id no coincide con alumno registrado.");
             }
             ps.close();
 
