@@ -116,7 +116,7 @@ public class InscripcionData {
     public List<Materia> obtenerMateriasNOCursadas(int id) {
         List<Materia> materias = new ArrayList<>();
         try {
-            String sql = "SELECT DISTINCT m.idMateria, m.nombre, anio, estado FROM materia m LEFT JOIN inscripcion i ON m.idMateria = i.idMateria WHERE i.idAlumno IS NULL OR i.idAlumno != ?";
+            String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
             PreparedStatement ps;
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -137,7 +137,7 @@ public class InscripcionData {
     }
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
-        String sql = "DELETE FROM inscripcion WHERE idAlumno= ? AND idMateria = ?";
+        String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);

@@ -27,21 +27,90 @@ public class prueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jmAlumno = new javax.swing.JMenu();
+        jmiFormAlu = new javax.swing.JMenuItem();
+        jmMateria = new javax.swing.JMenu();
+        jmiFormMat = new javax.swing.JMenuItem();
+        jmAdministración = new javax.swing.JMenu();
+        jmiManejoInsc = new javax.swing.JMenuItem();
+        jmiManiNotas = new javax.swing.JMenuItem();
+        jmConsultar = new javax.swing.JMenu();
+        jmiAluXMat = new javax.swing.JMenuItem();
+        jmSalir = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 547, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+
+        jmAlumno.setText("Alumno");
+
+        jmiFormAlu.setText("Formulario de Alumno");
+        jmiFormAlu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiFormAluActionPerformed(evt);
+            }
+        });
+        jmAlumno.add(jmiFormAlu);
+
+        jMenuBar1.add(jmAlumno);
+
+        jmMateria.setText("Materia");
+
+        jmiFormMat.setText("Formulario de Materia");
+        jmMateria.add(jmiFormMat);
+
+        jMenuBar1.add(jmMateria);
+
+        jmAdministración.setText("Administración");
+
+        jmiManejoInsc.setText("Manejo de Inscripciones");
+        jmAdministración.add(jmiManejoInsc);
+
+        jmiManiNotas.setText("Manipulación de Notas");
+        jmAdministración.add(jmiManiNotas);
+
+        jMenuBar1.add(jmAdministración);
+
+        jmConsultar.setText("Consultar");
+
+        jmiAluXMat.setText("Alumnos por Materia");
+        jmConsultar.add(jmiAluXMat);
+
+        jMenuBar1.add(jmConsultar);
+
+        jmSalir.setText("Salir");
+        jMenuBar1.add(jmSalir);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiFormAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFormAluActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiFormAluActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +148,17 @@ public class prueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jmAdministración;
+    private javax.swing.JMenu jmAlumno;
+    private javax.swing.JMenu jmConsultar;
+    private javax.swing.JMenu jmMateria;
+    private javax.swing.JMenu jmSalir;
+    private javax.swing.JMenuItem jmiAluXMat;
+    private javax.swing.JMenuItem jmiFormAlu;
+    private javax.swing.JMenuItem jmiFormMat;
+    private javax.swing.JMenuItem jmiManejoInsc;
+    private javax.swing.JMenuItem jmiManiNotas;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,8 +22,6 @@ public class Materia {
         this.estado = activo;
     }
     
-    
-
     public int getIdMateria() {
         return idMateria;
     }
