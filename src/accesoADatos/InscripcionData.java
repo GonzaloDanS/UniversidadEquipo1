@@ -116,7 +116,7 @@ public class InscripcionData {
     public List<Materia> obtenerMateriasNOCursadas(int id) {
         List<Materia> materias = new ArrayList<>();
         try {
-            String sql = "SELECT DISTINCT m.idMateria, m.nombre FROM materia m LEFT JOIN inscripcion i ON m.idMateria = i.idMateria WHERE i.idAlumno IS NULL OR i.idAlumno != ?";
+            String sql = "SELECT DISTINCT m.idMateria, m.nombre, anio, estado FROM materia m LEFT JOIN inscripcion i ON m.idMateria = i.idMateria WHERE i.idAlumno IS NULL OR i.idAlumno != ?";
             PreparedStatement ps;
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -126,6 +126,7 @@ public class InscripcionData {
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("anio"));
+                materia.setActivo(rs.getBoolean("estado"));
                 materias.add(materia);
             }
             ps.close();
@@ -169,6 +170,28 @@ public class InscripcionData {
         }
     }
 
-    /*public List<Alumno> obtenerAlumnosPorMateria(int idMateria) {
-    }*/
+    public List<Alumno> obtenerAlumnosPorMateria(int idMateria) {
+    List<Alumno> alumnos = new ArrayList<>();
+        try {
+            String sql = "SELECT inscripcion.idAlumno, dni, apellido, nombre, fechaNacimiento, estado FROM inscripcion, alumno WHERE inscripcion.idAlumno = alumno.idAlumno AND inscripcion.idMateria = ? ";
+            PreparedStatement ps;
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setActivo(rs.getBoolean("estado"));
+                alumnos.add(alumno);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la tabla inscripcion. " + ex.getMessage());
+        }
+        return alumnos;
+    }
 }
