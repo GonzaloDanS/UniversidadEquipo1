@@ -5,11 +5,15 @@
  */
 package vistas;
 
+import entidades.Materia;
+import java.util.TreeSet;
+
 /**
  *
  * @author gon_k
  */
 public class prueba extends javax.swing.JFrame {
+public static TreeSet<Materia> listaMaterias=new TreeSet<>();
 
     /**
      * Creates new form prueba
@@ -68,6 +72,11 @@ public class prueba extends javax.swing.JFrame {
         jmMateria.setText("Materia");
 
         jmiFormMat.setText("Formulario de Materia");
+        jmiFormMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiFormMatActionPerformed(evt);
+            }
+        });
         jmMateria.add(jmiFormMat);
 
         jMenuBar1.add(jmMateria);
@@ -111,6 +120,16 @@ public class prueba extends javax.swing.JFrame {
     private void jmiFormAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFormAluActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jmiFormAluActionPerformed
+
+    private void jmiFormMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFormMatActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        MateriaVista mv=new MateriaVista();
+        mv.setVisible(true);
+        jDesktopPane1.add(mv);
+        jDesktopPane1.moveToFront(mv);
+    }//GEN-LAST:event_jmiFormMatActionPerformed
 
     /**
      * @param args the command line arguments
