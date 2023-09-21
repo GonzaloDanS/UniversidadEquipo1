@@ -3,6 +3,7 @@ package vistas;
 import accesoADatos.*;
 import entidades.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class AlumnoPorMateria extends javax.swing.JInternalFrame {
@@ -117,13 +118,15 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
     private void jcbMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMateriaActionPerformed
         borrarFilas();
         Materia ms = (Materia) jcbMateria.getSelectedItem();
-        List <Alumno> alu = new ArrayList<>();
+        List<Alumno> alu = new ArrayList<>();
         if (ms != null) {
             alu = (ArrayList<Alumno>) insc.obtenerAlumnosPorMateria(ms.getIdMateria());
         }
-        for (Alumno alumno : alu){
+        if (alu.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No hay alumnos inscriptos a esta materia");
+        }
+        for (Alumno alumno : alu) {
             cargarAlumno(alumno);
-        
     }//GEN-LAST:event_jcbMateriaActionPerformed
     }
 
@@ -147,6 +150,9 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
     private void cargarLista() {
         ArrayList<Materia> materias = new ArrayList<>();
         materias = (ArrayList<Materia>) mat.listarMaterias();
+        jcbMateria.removeAllItems();
+        Materia mv = null;
+        jcbMateria.addItem(mv);
         for (Materia materia : materias) {
             jcbMateria.addItem(materia);
         }
@@ -155,7 +161,7 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
     private void cargarAlumno(Alumno alumno) {
         modelo.addRow(new Object[]{alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(), alumno.getNombre()});
     }
-    
+
     private void borrarFilas() {
         int filas = jtAlumnos.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
