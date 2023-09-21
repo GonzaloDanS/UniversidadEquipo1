@@ -125,7 +125,7 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
             cargarAlumno(alumno);
         
     }//GEN-LAST:event_jcbMateriaActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel;
