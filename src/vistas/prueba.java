@@ -50,7 +50,7 @@ public class prueba extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGap(0, 380, Short.MAX_VALUE)
         );
 
         jmAlumno.setText("Alumno");
@@ -102,14 +102,21 @@ public class prueba extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiFormAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFormAluActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        GestionAlumno ga=new GestionAlumno();
+        ga.setVisible(true);
+        jDesktopPane1.add(ga);
+        jDesktopPane1.moveToFront(ga);
     }//GEN-LAST:event_jmiFormAluActionPerformed
 
     /**
