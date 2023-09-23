@@ -80,7 +80,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return apellido + " " + nombre + " - " + dni;
+        return dni + " - "+ apellido + " " + nombre  ;
     }
 
     public void setFechaNacimiento(LocalDate fechaNac) {
