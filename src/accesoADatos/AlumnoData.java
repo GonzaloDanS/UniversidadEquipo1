@@ -73,7 +73,7 @@ public class AlumnoData {
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             if (fila == 1) {
-                JOptionPane.showMessageDialog(null, " Se eliminó el alumno.");
+                JOptionPane.showMessageDialog(null, "Se eliminó el alumno.");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -124,7 +124,33 @@ public class AlumnoData {
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setEstado(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "El ID no corresponde a ningún alumno activo.");
+                JOptionPane.showMessageDialog(null, "El DNI no corresponde a ningún alumno activo.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno - " + ex.getMessage());
+        }
+        return alumno;
+    }
+    
+    public Alumno buscarAlumnoPorDniTODO(int dni) {
+        Alumno alumno = null;
+        String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento, estado FROM alumno WHERE dni = ?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "El DNI no corresponde a ningún alumno.");
             }
             ps.close();
         } catch (SQLException ex) {
