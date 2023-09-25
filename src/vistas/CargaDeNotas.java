@@ -1,25 +1,27 @@
-
 package vistas;
 
 import accesoADatos.*;
 import entidades.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 public class CargaDeNotas extends javax.swing.JInternalFrame {
-public DefaultTableModel model = new DefaultTableModel();
-private ArrayList<Materia> listM;
-private ArrayList <Alumno> listA;
-private MateriaData matD;
-private AlumnoData aluD;
-private InscripcionData inscD;
+
+    public DefaultTableModel model = new DefaultTableModel();
+    private ArrayList<Materia> listM;
+    private ArrayList<Alumno> listA;
+    private MateriaData matD;
+    private AlumnoData aluD;
+    private InscripcionData inscD;
 
     public CargaDeNotas() {
         initComponents();
-        inscD= new InscripcionData();
-        matD= new MateriaData();
-        aluD= new AlumnoData();
-        listA= (ArrayList<Alumno>) aluD.listarAlumno();
-        
+        inscD = new InscripcionData();
+        matD = new MateriaData();
+        aluD = new AlumnoData();
+        listA = (ArrayList<Alumno>) aluD.listarAlumno();
+
         cargarCombo();
         armarCabecera();
         
@@ -47,6 +49,12 @@ private InscripcionData inscD;
         jLabel1.setText("Carga  de notas");
 
         jLabel2.setText("Seleccione un alumno:");
+
+        jCAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCAlumnosActionPerformed(evt);
+            }
+        });
 
         jTMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,8 +138,23 @@ private InscripcionData inscD;
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-     
+        try {
+            Alumno al = (Alumno) jCAlumnos.getSelectedItem();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                double x = Double.parseDouble(model.getValueAt(i, 2).toString());
+            }
+            for (int i = 0; i < model.getRowCount(); i++) {
+                inscD.actualizarNota(al.getIdAlumno(), Integer.parseInt(model.getValueAt(i, 0).toString()), Double.parseDouble(model.getValueAt(i, 2).toString()));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Solo se permiten dígitos, intente nuevamente. - "+e.getMessage());
+        }
     }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
+        borrarFilas();
+        this.materiasCursadas();
+    }//GEN-LAST:event_jCAlumnosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -145,37 +168,34 @@ private InscripcionData inscD;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera() {
-       ArrayList<Object> filaC = new ArrayList<>();
-       model.addColumn("Codigo");
-       model.addColumn("Nombre");
-       model.addColumn("Nota");
-       for(Object it : filaC){
-           model.addColumn(it);
-       }
-       jTMaterias.setModel(model);
+        ArrayList<Object> filaC = new ArrayList<>();
+        model.addColumn("Codigo");
+        model.addColumn("Nombre");
+        model.addColumn("Nota");
+        for (Object it : filaC) {
+            model.addColumn(it);
+        }
+        jTMaterias.setModel(model);
     }
-    
-    private void borrarFilas(){
-        int ind= model.getRowCount() -1;
-        for(int i = ind; i>=0;i--){
+
+    private void borrarFilas() {
+        int ind = model.getRowCount() - 1;
+        for (int i = ind; i >= 0; i--) {
             model.removeRow(i);
         }
-        
-        
     }
-    private void materiasCursadas(){
-        Alumno al = (Alumno)jCAlumnos.getSelectedItem();
-        listM= (ArrayList) inscD.obtenerMateriasCursadas(al.getIdAlumno());
-        for(Materia m : listM){
-            model.addRow(new Object[] {m.getIdMateria(), m.getNombre()});
+
+    private void materiasCursadas() {
+        Alumno al = (Alumno) jCAlumnos.getSelectedItem();
+        ArrayList<Inscripcion> ins = (ArrayList<Inscripcion>) inscD.obtenerInscripcionesPorAlumno(al.getIdAlumno());
+        for (Inscripcion in : ins) {
+            model.addRow(new Object[]{in.getIdMateria(), in.getMateria().getNombre(), in.getNota()});
         }
-        
-        
     }
 
     private void cargarCombo() {
-       for(Alumno item: listA){
-           jCAlumnos.addItem(item);
-       }
+        for (Alumno item : listA) {
+            jCAlumnos.addItem(item);
+        }
     }
 }
