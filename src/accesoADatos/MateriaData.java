@@ -25,7 +25,7 @@ public class MateriaData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 materia.setIdMateria(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Materia añadida correctamente.");
+                JOptionPane.showMessageDialog(null, "Materia añadida correctamente. \n ID Materia: "+materia.getIdMateria());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
