@@ -34,17 +34,17 @@ public class MateriaData {
 
     public Materia buscarMateria(int id) {
         Materia materia = new Materia();
-        String sql = "SELECT nombre, anio FROM materia WHERE idMateria = ? AND estado = 1 ";
+        String sql = "SELECT idMateria, nombre, anio, estado FROM materia WHERE idMateria = ? AND estado = 1 ";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                materia.setIdMateria(id);
+                materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("anio"));
-                materia.setActivo(true);
+                materia.setActivo(rs.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "El ID no corresponde a ninguna materia activa.");
             }
@@ -56,7 +56,7 @@ public class MateriaData {
     
     public Materia buscarMateriaTODO(int id) {
         Materia materia = new Materia();
-        String sql = "SELECT nombre, anio FROM materia WHERE idMateria = ? ";
+        String sql = "SELECT nombre, anio, estado FROM materia WHERE idMateria = ? ";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
@@ -66,9 +66,9 @@ public class MateriaData {
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("anio"));
-                materia.setActivo(true);
+                materia.setActivo(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "El ID no corresponde a ninguna materia activa.");
+                JOptionPane.showMessageDialog(null, "El ID no corresponde a ninguna materia.");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
