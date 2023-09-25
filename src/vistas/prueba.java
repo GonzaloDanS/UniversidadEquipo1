@@ -94,6 +94,11 @@ public static TreeSet<Materia> listaMaterias=new TreeSet<>();
         jmConsultar.setText("Consultar");
 
         jmiAluXMat.setText("Alumnos por Materia");
+        jmiAluXMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAluXMatActionPerformed(evt);
+            }
+        });
         jmConsultar.add(jmiAluXMat);
 
         jMenuBar1.add(jmConsultar);
@@ -128,15 +133,26 @@ public static TreeSet<Materia> listaMaterias=new TreeSet<>();
         jDesktopPane1.moveToFront(ga);
     }//GEN-LAST:event_jmiFormAluActionPerformed
 
+ 
     private void jmiFormMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFormMatActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        MateriaVista mv=new MateriaVista();
+        MateriaVista2 mv=new MateriaVista2();
         mv.setVisible(true);
         jDesktopPane1.add(mv);
         jDesktopPane1.moveToFront(mv);
     }//GEN-LAST:event_jmiFormMatActionPerformed
+
+    private void jmiAluXMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAluXMatActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        AlumnoPorMateria alm = new AlumnoPorMateria();
+        alm.setVisible(true);
+        jDesktopPane1.add(alm);
+        jDesktopPane1.moveToFront(alm);
+    }//GEN-LAST:event_jmiAluXMatActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -168,7 +184,11 @@ public static TreeSet<Materia> listaMaterias=new TreeSet<>();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new prueba().setVisible(true);
+//                new prueba().setVisible(true);
+                prueba p = new prueba();
+                p.setLocationRelativeTo(null);
+                p.setVisible(true);
+
             }
         });
     }
