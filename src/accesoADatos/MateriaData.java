@@ -53,6 +53,28 @@ public class MateriaData {
         }
         return materia;
     }
+    
+    public Materia buscarMateriaTODO(int id) {
+        Materia materia = new Materia();
+        String sql = "SELECT nombre, anio FROM materia WHERE idMateria = ? ";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                materia.setIdMateria(id);
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("anio"));
+                materia.setActivo(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "El ID no corresponde a ninguna materia activa.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia - " + ex.getMessage());
+        }
+        return materia;
+    }
 
     public void modificarMateria(Materia materia) {
         String sql = "UPDATE materia SET nombre = ?, anio = ?, estado = ? WHERE idMateria = ? ";
