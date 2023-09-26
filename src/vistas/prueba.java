@@ -97,9 +97,19 @@ public class prueba extends javax.swing.JFrame {
         jmAdministración.setText("Administración");
 
         jmiManejoInsc.setText("Manejo de Inscripciones");
+        jmiManejoInsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManejoInscActionPerformed(evt);
+            }
+        });
         jmAdministración.add(jmiManejoInsc);
 
         jmiManiNotas.setText("Manipulación de Notas");
+        jmiManiNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManiNotasActionPerformed(evt);
+            }
+        });
         jmAdministración.add(jmiManiNotas);
 
         jMenuBar1.add(jmAdministración);
@@ -174,6 +184,24 @@ public class prueba extends javax.swing.JFrame {
     private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
        cerrarVentana();
     }//GEN-LAST:event_jmSalirMouseClicked
+
+    private void jmiManejoInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManejoInscActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        InscripcionView iv=new InscripcionView();
+        iv.setVisible(true);
+        jDesktopPane1.add(iv);
+        jDesktopPane1.moveToFront(iv);
+    }//GEN-LAST:event_jmiManejoInscActionPerformed
+
+    private void jmiManiNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManiNotasActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        CargaDeNotas cdn=new CargaDeNotas();
+        cdn.setVisible(true);
+        jDesktopPane1.add(cdn);
+        jDesktopPane1.moveToFront(cdn);
+    }//GEN-LAST:event_jmiManiNotasActionPerformed
 
     /**
      * @param args the command line arguments
