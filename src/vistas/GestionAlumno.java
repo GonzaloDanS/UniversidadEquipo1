@@ -223,7 +223,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             }
         } catch (NumberFormatException e) {
             if (jtfDNI.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "El campo 'documento' no puede estar vacío. - "+e.getMessage());
+                JOptionPane.showMessageDialog(null, "El campo 'documento' no puede estar vacío. - " + e.getMessage());
             } else {
                 JOptionPane.showMessageDialog(null, "Sólo se aceptan números. ");
             }
@@ -263,6 +263,11 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
                 alu.guardarAlumno(new Alumno(Integer.parseInt(jtfDNI.getText()), jtfApellido.getText(), jtfNombre.getText(), ld, jrbEstado.isSelected()));
             }
         } catch (NumberFormatException e) {
+            if (jtfDNI.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El campo 'documento' no puede estar vacío.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Sólo se aceptan números. ");
+            }
         }
     }//GEN-LAST:event_jbNuevoActionPerformed
 
