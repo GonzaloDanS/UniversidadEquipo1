@@ -160,7 +160,7 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEstadoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jrbEstadoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -170,9 +170,7 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         try {
             int id = Integer.parseInt(jtIDMateria.getText());
-            
-            Materia m = mat.buscarMateria(id);
-            
+            Materia m = mat.buscarMateriaTODO(id);
             if (m != null) {
                 jtNombre.setText(m.getNombre());
                 jtAnio.setText(m.getAnioMateria()+"");
@@ -192,7 +190,6 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
             int id = Integer.parseInt(jtIDMateria.getText());
             Materia m = mat.buscarMateria(id);
             int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar la Materia "+m.getNombre()+("?"));
-            
             if (res == JOptionPane.YES_OPTION){
                 mat.eliminarMateria(id);
                 jtIDMateria.setText("");
@@ -213,10 +210,15 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         try {
             int id = Integer.parseInt(jtIDMateria.getText());
-            Materia m = mat.buscarMateria(id);
+            Materia m = mat.buscarMateriaTODO(id);
             if (m != null) {
-                m.setNombre(jtNombre.getText());
-                m.setAnioMateria(Integer.parseInt(jtAnio.getText()));
+                m.setIdMateria(id);
+                if (jtNombre.getText().isEmpty()) {
+                    m.setNombre(jtNombre.getText());
+                }
+                if (jtAnio.getText().isEmpty()) {
+                    m.setAnioMateria(Integer.parseInt(jtAnio.getText()));
+                }
                 m.setActivo(jrbEstado.isSelected());
                 mat.modificarMateria(m);
             }else{
@@ -224,7 +226,7 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
             }
         } catch (NumberFormatException e) {
             if (jtIDMateria.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío");
+                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - "+e.getMessage());
             }else{
                 JOptionPane.showMessageDialog(null, "Solo se aceptan números");
             }
@@ -241,7 +243,12 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
                 jtAnio.setText("");
                 jrbEstado.setSelected(false);
             }
-        }catch (NumberFormatException e) {        
+        }catch (NumberFormatException e) {
+            if (jtIDMateria.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - "+e.getMessage());
+            }else{
+                JOptionPane.showMessageDialog(null, "Solo se aceptan números");
+            }
         }
     }//GEN-LAST:event_jbNuevoActionPerformed
 

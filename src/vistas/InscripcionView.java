@@ -24,6 +24,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         md = new MateriaData();
         cargarComboBox();
         armarCabecera();
+        jbInscribir.setEnabled(false);
+        jbAnular.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")

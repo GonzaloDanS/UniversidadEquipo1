@@ -187,7 +187,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         try {
             int dni = Integer.parseInt(jtfDNI.getText());
-            Alumno al = alu.buscarAlumnoPorDni(dni);
+            Alumno al = alu.buscarAlumnoPorDniTODO(dni);
             if (al != null) {
                 jtfApellido.setText(al.getApellido());
                 jtfNombre.setText(al.getNombre());
@@ -206,15 +206,24 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         try {
             int dni = Integer.parseInt(jtfDNI.getText());
-            Alumno al = alu.buscarAlumnoPorDni(dni);
+            Alumno al = alu.buscarAlumnoPorDniTODO(dni);
             int id = al.getIdAlumno();
-            int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminarlo?");
-            if (res == JOptionPane.YES_OPTION) {
-                alu.eliminarAlumno(id);
+            if (al.isActivo()) {
+                int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminarlo?");
+                if (res == JOptionPane.YES_OPTION) {
+                    alu.eliminarAlumno(id);
+                    jtfDNI.setText("");
+                    jtfApellido.setText("");
+                    jtfNombre.setText("");
+                    jrbEstado.setSelected(false);
+                    jdcFecha.setDate(null);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El alumno ya está inactivo.");
             }
         } catch (NumberFormatException e) {
             if (jtfDNI.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "El campo 'documento' no puede estar vacío.");
+                JOptionPane.showMessageDialog(null, "El campo 'documento' no puede estar vacío. - "+e.getMessage());
             } else {
                 JOptionPane.showMessageDialog(null, "Sólo se aceptan números. ");
             }
