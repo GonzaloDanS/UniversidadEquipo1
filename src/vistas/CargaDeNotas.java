@@ -7,8 +7,17 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class CargaDeNotas extends javax.swing.JInternalFrame {
+    
 
-    public DefaultTableModel model = new DefaultTableModel();
+    private DefaultTableModel model = new DefaultTableModel(){
+        public boolean isCellEditable (int fila, int columna){
+            if (columna==2){
+                return true;
+            }
+            return false;
+        }
+    };
+    
     private ArrayList<Materia> listM;
     private ArrayList<Alumno> listA;
     private MateriaData matD;
