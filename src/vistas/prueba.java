@@ -7,13 +7,26 @@ package vistas;
 
 import entidades.Materia;
 import java.util.TreeSet;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author gon_k
  */
 public class prueba extends javax.swing.JFrame {
-public static TreeSet<Materia> listaMaterias=new TreeSet<>();
+
+    public static TreeSet<Materia> listaMaterias = new TreeSet<>();
+
+    public void cerrarVentana() {
+        String botones[] = {"Cerrar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Desea cerrar la aplicación?", "Opción Salir",
+                0, 0, null, botones, this);
+        if (eleccion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+            System.out.println("Se canceló el cierre de la aplicación");
+        }
+    }
 
     /**
      * Creates new form prueba
@@ -104,6 +117,11 @@ public static TreeSet<Materia> listaMaterias=new TreeSet<>();
         jMenuBar1.add(jmConsultar);
 
         jmSalir.setText("Salir");
+        jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmSalirMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jmSalir);
 
         setJMenuBar(jMenuBar1);
@@ -127,18 +145,18 @@ public static TreeSet<Materia> listaMaterias=new TreeSet<>();
     private void jmiFormAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFormAluActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        GestionAlumno ga=new GestionAlumno();
+        GestionAlumno ga = new GestionAlumno();
         ga.setVisible(true);
         jDesktopPane1.add(ga);
         jDesktopPane1.moveToFront(ga);
     }//GEN-LAST:event_jmiFormAluActionPerformed
 
- 
+
     private void jmiFormMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFormMatActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        MateriaVista2 mv=new MateriaVista2();
+        MateriaVista2 mv = new MateriaVista2();
         mv.setVisible(true);
         jDesktopPane1.add(mv);
         jDesktopPane1.moveToFront(mv);
@@ -153,6 +171,9 @@ public static TreeSet<Materia> listaMaterias=new TreeSet<>();
         jDesktopPane1.moveToFront(alm);
     }//GEN-LAST:event_jmiAluXMatActionPerformed
 
+    private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
+       cerrarVentana();
+    }//GEN-LAST:event_jmSalirMouseClicked
 
     /**
      * @param args the command line arguments
