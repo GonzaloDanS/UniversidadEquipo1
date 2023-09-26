@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  * @author Equipo
  */
 public class MateriaVista2 extends javax.swing.JInternalFrame {
-    
+
     private MateriaData mat;
 
     public MateriaVista2() {
@@ -160,11 +160,11 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEstadoActionPerformed
-        
+
     }//GEN-LAST:event_jrbEstadoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -173,30 +173,35 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
             Materia m = mat.buscarMateriaTODO(id);
             if (m != null) {
                 jtNombre.setText(m.getNombre());
-                jtAnio.setText(m.getAnioMateria()+"");
+                jtAnio.setText(m.getAnioMateria() + "");
                 jrbEstado.setSelected(m.isActivo());
             }
         } catch (NumberFormatException e) {
-            
-            if (jtIDMateria.getText().isEmpty()){
+
+            if (jtIDMateria.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío");
             } else {
-                JOptionPane.showMessageDialog(null, "Sólo se aceptan números");}
+                JOptionPane.showMessageDialog(null, "Sólo se aceptan números");
+            }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        try{
+        try {
             int id = Integer.parseInt(jtIDMateria.getText());
-            Materia m = mat.buscarMateria(id);
-            int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar la Materia "+m.getNombre()+("?"));
-            if (res == JOptionPane.YES_OPTION){
-                mat.eliminarMateria(id);
-                jtIDMateria.setText("");
-                jtNombre.setText("");
-                jtAnio.setText("");
-                jrbEstado.setSelected(false);
-            }            
+            Materia m = mat.buscarMateriaTODO(id);
+            if (m.isActivo()) {
+                int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar la Materia " + m.getNombre() + ("?"));
+                if (res == JOptionPane.YES_OPTION) {
+                    mat.eliminarMateria(id);
+                    jtIDMateria.setText("");
+                    jtNombre.setText("");
+                    jtAnio.setText("");
+                    jrbEstado.setSelected(false);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"La materia ya está inactiva.");
+            }
         } catch (NumberFormatException e) {
             if (jtIDMateria.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío");
@@ -204,7 +209,7 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Sólo se aceptan números");
             }
         }
-        
+
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -221,13 +226,13 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
                 }
                 m.setActivo(jrbEstado.isSelected());
                 mat.modificarMateria(m);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "La materia no existe");
             }
         } catch (NumberFormatException e) {
-            if (jtIDMateria.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - "+e.getMessage());
-            }else{
+            if (jtIDMateria.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - " + e.getMessage());
+            } else {
                 JOptionPane.showMessageDialog(null, "Solo se aceptan números");
             }
         }
@@ -237,16 +242,16 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
         try {
             if (jtNombre.getText().isEmpty() || jtAnio.getText().isEmpty() || jtIDMateria == null) {
                 JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
-            }else{
-                mat.guardarMateria(new Materia (jtNombre.getText(), Integer.parseInt(jtAnio.getText()), jrbEstado.isSelected()));
+            } else {
+                mat.guardarMateria(new Materia(jtNombre.getText(), Integer.parseInt(jtAnio.getText()), jrbEstado.isSelected()));
                 jtNombre.setText("");
                 jtAnio.setText("");
                 jrbEstado.setSelected(false);
             }
-        }catch (NumberFormatException e) {
-            if (jtIDMateria.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - "+e.getMessage());
-            }else{
+        } catch (NumberFormatException e) {
+            if (jtIDMateria.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - " + e.getMessage());
+            } else {
                 JOptionPane.showMessageDialog(null, "Solo se aceptan números");
             }
         }

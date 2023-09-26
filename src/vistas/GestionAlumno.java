@@ -259,18 +259,17 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             LocalDate ld = Instant.ofEpochMilli(jdcFecha.getDate().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
             if (jtfApellido.getText().isEmpty() || jtfNombre.getText().isEmpty() || ld == null) {
                 JOptionPane.showMessageDialog(null, "Ningún campo puede estar vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (jtfDNI.getText().length() != 8) {
+                JOptionPane.showMessageDialog(null, "El DNI debe tener 8 dígitos. ", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 alu.guardarAlumno(new Alumno(Integer.parseInt(jtfDNI.getText()), jtfApellido.getText(), jtfNombre.getText(), ld, jrbEstado.isSelected()));
             }
         } catch (NumberFormatException e) {
-            if (jtfDNI.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "El campo 'documento' no puede estar vacío.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Sólo se aceptan números. ");
-            }
+            JOptionPane.showMessageDialog(null, "Sólo se aceptan números. ", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Solo se aceptan fechas. - " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbNuevoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
