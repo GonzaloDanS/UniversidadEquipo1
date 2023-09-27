@@ -150,7 +150,7 @@ public class AlumnoData {
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setEstado(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "El DNI no corresponde a ningún alumno.");
+                JOptionPane.showMessageDialog(null, "El DNI no corresponde a ningún alumno.","Alumno no encontrado",JOptionPane.PLAIN_MESSAGE);
             }
             ps.close();
         } catch (SQLException ex) {

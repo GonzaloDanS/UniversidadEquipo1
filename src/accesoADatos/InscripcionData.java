@@ -79,7 +79,7 @@ public class InscripcionData {
                 Inscripcion inscripcion = new Inscripcion();
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                 inscripcion.setAlumno(aluData.buscarAlumno(rs.getInt("idAlumno")));
-                inscripcion.setMateria(matData.buscarMateria(rs.getInt("idMateria")));
+                inscripcion.setMateria(matData.buscarMateriaTODO(rs.getInt("idMateria")));
                 inscripcion.setNota(rs.getDouble("nota"));
                 Inscripciones.add(inscripcion);
             }
@@ -93,8 +93,7 @@ public class InscripcionData {
     public List<Materia> obtenerMateriasCursadas(int id) {
         List<Materia> materias = new ArrayList<>();
         try {
-            String sql = "SELECT inscripcion.idMateria, nombre, anio FROM inscripcion, "
-                    + " materia WHERE inscripcion.idMateria = materia.idMateria AND inscripcion.idAlumno = ? ";
+            String sql = "SELECT inscripcion.idMateria, nombre, anio FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria AND materia.estado = 1 AND inscripcion.idAlumno = ? ";
             PreparedStatement ps;
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -162,9 +161,9 @@ public class InscripcionData {
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
             int mostrar = ps.executeUpdate();
-            if (mostrar == 1) {
-                JOptionPane.showMessageDialog(null, "Nota actualizada.");
-            }
+//            if (mostrar == 1) {
+//                JOptionPane.showMessageDialog(null, "Nota actualizada.");
+//            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la tabla inscripcion. " + ex.getMessage());
         }

@@ -243,9 +243,10 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
                 al.setActivo(jrbEstado.isSelected());
                 al.setFechaNac(ld);
                 alu.modificarAlumno(al);
-            } else {
-                JOptionPane.showMessageDialog(null, "El alumno no existe");
-            }
+            } 
+//            else {
+//                JOptionPane.showMessageDialog(null, "El alumno no existe");
+//            }
         } catch (NumberFormatException e) {
             if (jtfDNI.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "El campo 'documento' no puede estar vacío.");

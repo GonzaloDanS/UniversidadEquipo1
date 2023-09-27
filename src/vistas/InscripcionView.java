@@ -55,11 +55,6 @@ public class InscripcionView extends javax.swing.JInternalFrame {
                 jcbAlumnoActionPerformed(evt);
             }
         });
-        jcbAlumno.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jcbAlumnoPropertyChange(evt);
-            }
-        });
 
         jlListaMaterias.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jlListaMaterias.setText("Listado de Materias");
@@ -179,10 +174,6 @@ public class InscripcionView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jcbAlumnoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcbAlumnoPropertyChange
-
-    }//GEN-LAST:event_jcbAlumnoPropertyChange
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();

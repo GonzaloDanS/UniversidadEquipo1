@@ -155,6 +155,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
             for (int i = 0; i < model.getRowCount(); i++) {
                 inscD.actualizarNota(al.getIdAlumno(), Integer.parseInt(model.getValueAt(i, 0).toString()), Double.parseDouble(model.getValueAt(i, 2).toString()));
             }
+            JOptionPane.showMessageDialog(null, "Nota actualizada.");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Solo se permiten dígitos, intente nuevamente. - "+e.getMessage());
         }
@@ -198,7 +199,10 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         Alumno al = (Alumno) jCAlumnos.getSelectedItem();
         ArrayList<Inscripcion> ins = (ArrayList<Inscripcion>) inscD.obtenerInscripcionesPorAlumno(al.getIdAlumno());
         for (Inscripcion in : ins) {
-            model.addRow(new Object[]{in.getIdMateria(), in.getMateria().getNombre(), in.getNota()});
+            if (in.getMateria().isActivo()) {
+                model.addRow(new Object[]{in.getIdMateria(), in.getMateria().getNombre(), in.getNota()});
+            }
+//            model.addRow(new Object[]{in.getIdMateria(), in.getMateria().getNombre(), in.getNota()});
         }
     }
 
