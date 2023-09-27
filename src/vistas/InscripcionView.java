@@ -183,13 +183,15 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         borrarFilas();
         Alumno al = (Alumno) jcbAlumno.getSelectedItem();
         ArrayList<Materia> mats = new ArrayList<>();
-        if (jrbInscripto.isSelected()) {
-            mats = (ArrayList<Materia>) ins.obtenerMateriasCursadas(al.getIdAlumno());
-        } else if (jrbNoInscripto.isSelected()) {
-            mats = (ArrayList<Materia>) ins.obtenerMateriasNOCursadas(al.getIdAlumno());
-        }
-        for (Materia mat : mats) {
-            modelo.addRow(new Object[]{mat.getIdMateria(), mat.getNombre(), mat.getAnioMateria()});
+        if (al != null) {
+            if (jrbInscripto.isSelected()) {
+                mats = (ArrayList<Materia>) ins.obtenerMateriasCursadas(al.getIdAlumno());
+            } else if (jrbNoInscripto.isSelected()) {
+                mats = (ArrayList<Materia>) ins.obtenerMateriasNOCursadas(al.getIdAlumno());
+            }
+            for (Materia mat : mats) {
+                modelo.addRow(new Object[]{mat.getIdMateria(), mat.getNombre(), mat.getAnioMateria()});
+            }
         }
     }//GEN-LAST:event_jcbAlumnoActionPerformed
 
@@ -242,7 +244,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             if (f != -1) {
                 idMat = Integer.parseInt(modelo.getValueAt(f, 0).toString());
                 Materia m = md.buscarMateria(idMat);
-                Inscripcion insc = new Inscripcion(al,m,0);
+                Inscripcion insc = new Inscripcion(al, m, 0);
                 ins.guardarInscripcion(insc);
                 actualizar();
             }
@@ -289,8 +291,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             modelo.removeRow(f);
         }
     }
-    
-    private void actualizar(){
+
+    private void actualizar() {
         borrarFilas();
         Alumno al = (Alumno) jcbAlumno.getSelectedItem();
         ArrayList<Materia> mats = new ArrayList<>();

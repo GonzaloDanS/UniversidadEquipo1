@@ -249,11 +249,11 @@ public class MateriaVista2 extends javax.swing.JInternalFrame {
                 jrbEstado.setSelected(false);
             }
         } catch (NumberFormatException e) {
-            if (jtIDMateria.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - " + e.getMessage());
-            } else {
-                JOptionPane.showMessageDialog(null, "Solo se aceptan números");
-            }
+//            if (jtIDMateria.getText().isEmpty()) {
+//                JOptionPane.showMessageDialog(null, "El campo 'ID Materia' no puede estar vacío. - " + e.getMessage());
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Solo se aceptan números");
+//            }
         }
     }//GEN-LAST:event_jbNuevoActionPerformed
 
