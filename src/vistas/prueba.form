@@ -6,7 +6,9 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jmAlumno">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Alumno"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/recursos/alumnos.png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiFormAlu">
@@ -21,7 +23,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmMateria">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Materia"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/recursos/materias.png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiFormMat">
@@ -36,7 +40,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmAdministraci&#xf3;n">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Administraci&#xf3;n"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/recursos/admin.png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiManejoInsc">
@@ -59,7 +65,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmConsultar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Consultar"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/recursos/consultas.png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiAluXMat">
@@ -74,7 +82,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmSalir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/recursos/exit.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmSalirMouseClicked"/>
@@ -120,6 +130,10 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(imagen,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono= new ImageIcon(getClass().getResource(&quot;/recursos/campus2.jpg&quot;));&#xa;Image imagen=icono.getImage();"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

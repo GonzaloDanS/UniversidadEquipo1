@@ -6,13 +6,17 @@
 package vistas;
 
 import entidades.Materia;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.TreeSet;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author gon_k
  */
+
 public class prueba extends javax.swing.JFrame {
 
     public static TreeSet<Materia> listaMaterias = new TreeSet<>();
@@ -44,7 +48,14 @@ public class prueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        ImageIcon icono= new ImageIcon(getClass().getResource("/recursos/campus2.jpg"));
+        Image imagen=icono.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jmAlumno = new javax.swing.JMenu();
         jmiFormAlu = new javax.swing.JMenuItem();
@@ -70,7 +81,7 @@ public class prueba extends javax.swing.JFrame {
             .addGap(0, 380, Short.MAX_VALUE)
         );
 
-        jmAlumno.setText("Alumno");
+        jmAlumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/alumnos.png"))); // NOI18N
 
         jmiFormAlu.setText("Formulario de Alumno");
         jmiFormAlu.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +93,7 @@ public class prueba extends javax.swing.JFrame {
 
         jMenuBar1.add(jmAlumno);
 
-        jmMateria.setText("Materia");
+        jmMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/materias.png"))); // NOI18N
 
         jmiFormMat.setText("Formulario de Materia");
         jmiFormMat.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +105,7 @@ public class prueba extends javax.swing.JFrame {
 
         jMenuBar1.add(jmMateria);
 
-        jmAdministración.setText("Administración");
+        jmAdministración.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/admin.png"))); // NOI18N
 
         jmiManejoInsc.setText("Manejo de Inscripciones");
         jmiManejoInsc.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +125,7 @@ public class prueba extends javax.swing.JFrame {
 
         jMenuBar1.add(jmAdministración);
 
-        jmConsultar.setText("Consultar");
+        jmConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/consultas.png"))); // NOI18N
 
         jmiAluXMat.setText("Alumnos por Materia");
         jmiAluXMat.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +137,7 @@ public class prueba extends javax.swing.JFrame {
 
         jMenuBar1.add(jmConsultar);
 
-        jmSalir.setText("Salir");
+        jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/exit.png"))); // NOI18N
         jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jmSalirMouseClicked(evt);
